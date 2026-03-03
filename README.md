@@ -1,35 +1,87 @@
-# SURGICAL ANALYSIS PROJECT
+# **SURGICAL ANALYSIS PROJECT**
 
-This project provides a **comprehensive statistical analysis of personal surgical procedures** performed since 2012; it automates the workflow from raw data processing to the generation of a professional, interactive HTML report.
+**Author:** Dr. Andrea PECCATI
 
-## 1 - Project Overview
+**Output Format:** Interactive Robobook (HTML)
 
-The analysis focuses on three main pillars:
-* **PERFORMED PROCEDURES** = analysis of the total amount of procedures performed per year (plus running total)
-* **PROCEDURES AS LEAD SURGEON** = analysis of the percentage of procedures performed as lead surgeon
-* **TOP 15 PROCEDURES** = analysis of the top 15 procedures (ICD-9 classification)
+This project provides a comprehensive statistical analysis of personal surgical procedures performed since 2012.
 
-## 2 - Repository Structure
+It automates the entire workflow, from raw data cleaning and transformation to the generation of a professional, interactive HTML report.
 
-* `surgical_analysis.R` = main R script for data cleaning, transformation, and statistical processing. It exports the data for the report.
-* `surgical_analysis.Rmd` = Markdown template used to generate the final interactive HTML report (using the `robobook` format).
-* `data/` = directory for source CSV files (e.g., `surgical_data_YYYY.csv` and `icd9_procedures.csv`).
-* `surgical_analysis.Rproj` = RStudio project file.
+## **REPORT PREVIEW**
 
-## 3 - Getting Started
+![](report_preview.png)
 
-### Prerequisites
-The project requires the following R packages:
-* `tidyverse` (dplyr, ggplot2, lubridate, etc.)
-* `kableExtra`
-* `rmdformats`
+## **PROJECT STRUCTURE**
 
-The `surgical_analysis.R` script includes a routine to automatically check for and install any missing packages upon execution.
+-   **`surgical_analysis.R`**:\
+    The core engine. It handles library dependencies, data ingestion, cleaning, and statistical computation, and it exports the data for the report.
+-   **`surgical_analysis.Rmd`**:\
+    The reporting layer. It imports the processed environment and renders the visual dashboard using `ggplot2` and `kableExtra`
+-   **`data/`** *(Directory)*:\
+    Expected location for anonymized CSV files.\
+    [Note: This folder is typically excluded from version control to maintain data silos]
+-   **`surgical_analysis.RData`**\
+    The bridge file containing exported functions and dataframes used for report generation
 
-### Usage Instructions
-1. **Data Setup** - Ensure your surgical data files are in the `data/` folder following the naming convention `surgical_data_YYYY.csv`.
-2. **Data Processing** - Run `surgical_analysis.R`. This script will process the raw data, performs cleaning and prepares the environment for the report.
-3. **Generate Report** - Open `surgical_analysis.Rmd` in RStudio and click the **Knit** button to produce the final `surgical_analysis.html` report.
+## **PRIVACY AND DATA PROTECTION**
 
----
-**Developed for clinical activity monitoring and academic performance tracking**
+-   All data utilized in this project has been **fully anonymized** prior to the creation of the source CSV files to ensure patient privacy
+
+-   There is **no sensitive personal information** (PII) or health-protected identifiers within the datasets
+
+-   The analysis is performed exclusively on de-identified variables such as visit types, timestamps, and payment categories
+
+## **INSTRUCTIONS**
+
+1.  **Prepare Data**\
+    Place your anonymized CSV files (formatted with `;` separator) into the `/data` folder
+
+2.  **Process:**\
+    Execute the R script to clean and transform the data:
+
+    ```         
+    source("surgical_analysis.R")
+    ```
+
+3.  **Render**\
+    Knit the .RMarkdown file in RStudio or via console:
+
+    ```         
+    rmarkdown::render("surgical_analysis.Rmd")
+    ```
+
+## **KEY FEATURES**
+
+-   **Automated Data Ingestion**\
+    Scans the `/data` directory for CSV files
+
+-   **Integrity Auditing**\
+    Uses a custom `check_missing()` function to monitor data quality and NA percentages
+
+-   **Clinical activity monitoring and academic performance tracking**, focusing on three main pillars:
+
+    -   **Performed procedures**: analysis of the total amount of procedures performed per year
+
+    -   **Procedures as lead surgeon**: analysis of the percentage of procedures performed as lead surgeon
+
+    -   **Top 15 procedures**: analysis of the top 15 procedures (ICD-9 classification)
+
+-   **Professional Reporting**\
+    Generates a mobile-responsive "Robobook" report with interactive tables, stacked bar charts, and cumulative growth metrics
+
+## **TECH STACK**
+
+-   **Language:** R (verison ≥ 4.1.0 required for the native pipe operator `|>`)
+
+-   **RStudio:** Recommended for knitting the `.Rmd` report
+
+-   **Operating System:** Windows, macOS, or Linux
+
+-   **Manipulation:** `tidyverse` (dplyr, purrr, tidyr), `lubridate`
+
+-   **Visualization:** `ggplot2`
+
+-   **Table Formatting:** `kableExtra`
+
+-   **UI/UX:** `rmdformats` (Robobook template)

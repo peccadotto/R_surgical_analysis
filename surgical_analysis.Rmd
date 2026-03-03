@@ -1,5 +1,5 @@
 ---
-title: "SURGICAL ANALYSIS"
+title: "ANALYSIS of SURGICAL ACTIVITY"
 author: "Dr. Andrea PECCATI"
 date: "`r Sys.Date()`"
 output:
@@ -8,10 +8,39 @@ output:
     thumbnails: false
     lightbox: true
     gallery: false
-    collapsed: false # Forza l'espansione dei menu
+    collapsed: false
 ---
 
-------------------------------------------------------------------------
+```{=html}
+<style>
+@media print {
+  /* 1. Hide menus, navigation bars, and logos */
+  #sidebar, .book-summary, .book-header, .book-logo {
+    display: none !important;
+  }
+
+  /* 2. Unlock the main container to allow page breaks */
+  html, body, .book, .book-body, .page-wrapper, .page-inner, .section {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 3. Remove the rightward offset created by the sidebar */
+  .book-body {
+    left: 0 !important;
+  }
+
+  /* 4. Prevent charts/images from being split across two pages */
+  img, canvas, .ggplot2 {
+    page-break-inside: avoid !important;
+  }
+}
+</style>
+```
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -39,26 +68,47 @@ library(tidyverse)
     )
 ```
 
-The following objects were exported in .RData format form the `surgical_analysis.R` file to be imported in this report:
+<a href="" onclick="window.print()" class="print-button" name="top">
 
--   the `surgeries_stats` dataframe
+Print report
 
--   the `procedures_stats` dataframe
+</a>
 
-## 1. PROCEDURES
+```{=html}
+<style>
+.print-button {
+  font-weight: bold;
+  text-align: center;
+}
+@media print {
+  .print-button {
+    display: none !important;
+  }
+}
+</style>
+```
 
-This is the report of the **procedures performed between `r min(surgeries_stats$year)` and `r max(surgeries_stats$year)`**.
+\
+The following objects were **exported in .RData format** form the `surgical_analysis.R` file to be imported in this report:
 
-### Table
+-   the `check_missing` function
+
+-   the `surgeries_total` dataframe
+
+-   the `surgeries_stats_wide` dataframe
+
+-   the `procedures_stats_wide` dataframe
+
+## 1 - DATA CHECK
+
+Before data analysis, a quick **data check was performed to search for NA values** (amount and %).
 
 ```{r}
-surgeries_stats |> 
-  select(year, procedures) |>
-  mutate(cumulative = cumsum(procedures)) |>
+check_missing(surgeries_total) |>
   rename(
-    "Year" = year,
-    "Procedures" = procedures,
-    "Running total" = cumulative
+    "Variable" = variable,
+    "NA values" = missing,
+    "%" = pct,
   ) |>
   kbl(align="c")|>
   kable_styling(
@@ -66,62 +116,90 @@ surgeries_stats |>
     full_width = FALSE,      
     position = "center"
   ) |>
-  column_spec(1:3, width = "150px")
+  column_spec(1:3, width = "120px")
 ```
 
-### Plot
+## 2 - PROCEDURES per YEAR
+
+This is the report of the **procedures performed between `r min(surgeries_stats_wide$year)` and `r max(surgeries_stats_wide$year)`**, [**grouped by year**]{.underline}.
+
+### 2.1 - Table
 
 ```{r}
-  surgeries_plot <- ggplot(
-      data = surgeries_stats,
-      aes(x = year)
-    ) +
-    geom_bar(
-      aes(y = procedures),
-      stat = "identity",
-      fill = "lightgrey",
-      color = "black",
-      alpha = 0.6
-    ) +
-    geom_text(
-      aes(y = procedures, label = procedures),
-      vjust = -0.5,
-      fontface = "bold",
-      size = 5
-    ) +
-    scale_x_continuous(
-      name ="",
-      breaks = seq(min(surgeries_stats$year), max(surgeries_stats$year), by = 1)
-    ) +
-    scale_y_continuous(
-      name = "",
-      expand = expansion(mult = c(0, 0.05))
-    ) +
-    labs(
-      title = paste0("TOTAL PROCEDURES PER YEAR (", min(surgeries_stats$year), "-", max(surgeries_stats$year), ")")
-    ) +
-    my_plot_theme
-  print(surgeries_plot)
+surgeries_stats_wide |> 
+  select(year, procedures) |>
+  mutate(cumulative = cumsum(procedures)) |>
+  rename(
+    "Year" = year,
+    "Procedures" = procedures,
+    "Running" = cumulative
+  ) |>
+  kbl(align="c")|>
+  kable_styling(
+    bootstrap_options = "striped", 
+    full_width = FALSE,      
+    position = "center"
+  ) |>
+  column_spec(1:3, width = "120px")
 ```
 
-------------------------------------------------------------------------
-
-## 2. PROCEDURES AS LEAD SURGEON
-
-This is the report of the **procedures performed as lead surgeon between `r min(surgeries_stats$year)` and `r max(surgeries_stats$year)`**.
-
-The table shows, for each year:
-
-1.  the total amount of performed procedures
-
-2.  the % of procedures performed as lead surgeon relative to the total amount of performed procedures
-
-Data show [**a clear consistently increasing % of procedures performes as lead surgeon, to indicate a constantly increasing surgical autonomy**.]{.underline}
-
-### Table
+### 2.2 - Plot
 
 ```{r}
-surgeries_stats |> 
+ggplot(
+  data = surgeries_stats_wide,
+  aes(x = year)
+) +
+geom_bar(
+  aes(y = procedures),
+  stat = "identity",
+  fill = "lightgrey",
+  color = "black",
+  alpha = 0.6
+) +
+geom_text(
+  aes(
+    y = procedures,
+    label = procedures
+  ),
+  vjust = -0.5,
+  fontface = "bold",
+  size = 4
+) +
+scale_x_continuous(
+  name ="",
+  breaks = seq(
+    min(surgeries_stats_wide$year),
+    max(surgeries_stats_wide$year),
+    by = 1
+  )
+) +
+scale_y_continuous(
+  name = "",
+  expand = expansion(mult = c(0, 0.05))
+) +
+labs(
+  title = paste0(
+    "PROCEDURES per YEAR (",
+    min(surgeries_stats_wide$year),
+    "-",
+    max(surgeries_stats_wide$year),
+    ")"
+  )
+) +
+my_plot_theme
+```
+
+## 3 - PROCEDURES as LEAD SURGEON per YEAR
+
+This is the report of the **procedures performed as lead surgeon between `r min(surgeries_stats_wide$year)` and `r max(surgeries_stats_wide$year)`**, [**grouped by year**]{.underline}.
+
+⚠️ Data show **A CLEAR AND CONSTANTLY INCREASING % OF PROCEDURES PERFORMES AS LEAD SURGEON, to indicate a [constantly increasing surgical autonomy]{.underline}**[.]{.underline}
+
+### 3.1 - Table
+
+```{r}
+surgeries_stats_wide |> 
   select(year, lead, pct_lead) |>
   mutate(pct_lead = sprintf("%.2f%%", pct_lead)) |>
   mutate(cumulative = cumsum(lead)) |>
@@ -129,7 +207,7 @@ surgeries_stats |>
     "Year" = year,
     "As lead surgeon" = lead,
     "%" = pct_lead,
-    "Running total" = cumulative
+    "Running" = cumulative
   ) |>
   kbl(align="c")|>
   kable_styling(
@@ -137,61 +215,70 @@ surgeries_stats |>
     full_width = FALSE,      
     position = "center"
   ) |>
-  column_spec(1:4, width = "150px")
+  column_spec(1:4, width = "120px")
 ```
 
-### Plot
+### 3.2 - Plot
 
 ```{r}
-  lead_plot <- ggplot(
-    data = surgeries_stats,
-    aes(x = year)
-  ) +
-    geom_bar(
-      aes(y = pct_lead),
-      stat = "identity",
-      fill = "lightgrey",
-      color = "black",
-      alpha = 0.6
-    ) +
-    geom_text(
-      aes(y = pct_lead, label = paste0(round(pct_lead, 0), "%")),
-      vjust = -0.5,
-      fontface = "bold",
-      size = 5
-    ) +
-    scale_x_continuous(
-      name ="",
-      breaks = seq(min(surgeries_stats$year), max(surgeries_stats$year), by = 1)
-    ) +
-    scale_y_continuous(
-      name = "",
-      expand = expansion(mult = c(0, 0.05))
-    ) +
-    labs(
-      title = paste0("% AS LEAD SURGEON PER YEAR (", min(surgeries_stats$year), "-", max(surgeries_stats$year), ")")
-    ) +
-    my_plot_theme
-  print(lead_plot)
+ggplot(
+  data = surgeries_stats_wide,
+  aes(x = year)
+) +
+geom_bar(
+  aes(y = pct_lead),
+  stat = "identity",
+  fill = "lightgrey",
+  color = "black",
+  alpha = 0.6
+) +
+geom_text(
+  aes(
+    y = pct_lead,
+    label = paste0(round(pct_lead, 0), "%")
+  ),
+  vjust = -0.5,
+  fontface = "bold",
+  size = 5
+) +
+scale_x_continuous(
+  name ="",
+  breaks = seq(
+    min(surgeries_stats_wide$year),
+    max(surgeries_stats_wide$year),
+    by = 1
+  )
+) +
+scale_y_continuous(
+  name = "",
+  expand = expansion(mult = c(0, 0.05))
+) +
+labs(
+  title = paste0(
+    "% as LEAD SURGEON per YEAR (",
+    min(surgeries_stats_wide$year),
+    "-",
+    max(surgeries_stats_wide$year),
+    ")")
+) +
+my_plot_theme
 ```
 
-------------------------------------------------------------------------
+## 4 - TOP 15 PROCEDURES
 
-## 3. TOP 15 PROCEDURES
+This is the report of the **top 15 procedures, performed between `r min(surgeries_stats_wide$year)` and `r max(surgeries_stats_wide$year)`**.
 
-This is the report of the **top 15 procedures, performed between `r min(surgeries_stats$year)` and `r max(surgeries_stats$year)`**.
+Codes and descriptions of ICD-9 procedures were taken from the [CMS.gov website](https://www.cms.gov/medicare/coding-billing/icd-10-codes/icd-9-cm-diagnosis-procedure-codes-abbreviated-and-full-code-titles).
 
-Short and long description of ICD-9 procedures were taken from the [CMS.gov website](https://www.cms.gov/medicare/coding-billing/icd-10-codes/icd-9-cm-diagnosis-procedure-codes-abbreviated-and-full-code-titles).
-
-### Table
+### 4.1 - Table
 
 ```{r}
-procedures_stats |>
+procedures_stats_wide |>
   select(procedure, procedures, short_descr)|>
   rename(
     "ICD-9 Code" = procedure,
     "Procedures" = procedures,
-    "ICD-9 short description" = short_descr
+    "ICD-9 Short description" = short_descr
   ) |>
   kbl(align="ccl")|>
   kable_styling(
@@ -204,41 +291,47 @@ procedures_stats |>
   column_spec(3, width = "300px")
 ```
 
-### Plot
+### 4.2 - Plot
 
 ```{r}
-  procedures_plot <- ggplot(
-    data = procedures_stats,
-    aes(x = reorder(short_descr, procedures), y = procedures)
-  ) +
-    geom_col(
-      fill = "lightgrey",
-      color = "black"
-    ) +
-    geom_text(
-      aes(label = procedure),
-      y = 0,
-      hjust = -0.1,
-      fontface = "bold",
-      size = 4
-    ) +
-    geom_text(
-      aes(label = procedures),
-      hjust = -0.5, 
-      fontface = "bold",
-      size = 5
-      ) +
-    scale_x_discrete(
-      name = ""
-    ) +
-    scale_y_continuous(
-      name="",
-      expand = expansion(mult = c(0, 0.05))
-    ) +
-    labs(
-      title = paste("TOP",length(procedures_stats$procedure),"ICD-9 PROCEDURES"),
-    ) +
-    coord_flip() +
-    my_plot_theme
-  print(procedures_plot)
+ggplot(
+data = procedures_stats_wide,
+aes(
+  x = reorder(short_descr, procedures),
+  y = procedures)
+) +
+geom_col(
+  fill = "lightgrey",
+  color = "black"
+) +
+geom_text(
+  aes(label = procedure),
+  y = 0,
+  hjust = -0.1,
+  fontface = "bold",
+  size = 4
+) +
+geom_text(
+  aes(label = procedures),
+  hjust = -0.5, 
+  fontface = "bold",
+  size = 4
+) +
+scale_x_discrete(
+  name = ""
+) +
+scale_y_continuous(
+  name="",
+  expand = expansion(mult = c(0, 0.05))
+) +
+labs(
+  title = paste0(
+    "TOP ",
+    length(procedures_stats_wide$procedure),
+    " ICD-9 PROCEDURES"
+  ),
+  caption = "Short description of ICD-9 procedures taken from CMS.gov"
+) +
+coord_flip() +
+my_plot_theme
 ```
