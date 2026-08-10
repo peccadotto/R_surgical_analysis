@@ -53,7 +53,7 @@ knitr::opts_chunk$set(
 	out.height = "600px",
 	out.width = "800px"
 )
-load("data/ver_1/export.RData")
+load("data/export.RData")
 library(kableExtra)
 library(tidyverse)
 
