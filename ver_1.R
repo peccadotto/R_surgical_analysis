@@ -33,13 +33,13 @@
   
 # 3. Import data from .csv files
   files <- list.files(
-    path       = "data",
+    path       = "data/ver_1",
     pattern    = "surgical_data_\\d{4}\\.csv",
     full.names = TRUE
   )
   
   icd9proc <- read.csv(
-    "data/icd9_procedures.csv",
+    "data/ver_1/icd9_procedures.csv",
     header     = TRUE,
     sep        = ";",
     colClasses = "character"
@@ -119,7 +119,7 @@
     surgeries_total,
     surgeries_stats_wide,
     procedures_stats_wide,
-    file = "surgical_analysis.RData"
+    file = "data/ver_1/export.RData"
   )
   
 # -----------------------------------------------------------------------------

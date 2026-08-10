@@ -53,7 +53,7 @@ knitr::opts_chunk$set(
 	out.height = "600px",
 	out.width = "800px"
 )
-load("surgical_analysis.RData")
+load("data/ver_1/export.RData")
 library(kableExtra)
 library(tidyverse)
 
@@ -91,13 +91,13 @@ Print report
 \
 The following objects were **exported in .RData format** form the `surgical_analysis.R` file to be imported in this report:
 
--   the `check_missing` function
+- the `check_missing` function
 
--   the `surgeries_total` dataframe
+- the `surgeries_total` dataframe
 
--   the `surgeries_stats_wide` dataframe
+- the `surgeries_stats_wide` dataframe
 
--   the `procedures_stats_wide` dataframe
+- the `procedures_stats_wide` dataframe
 
 ## 1 - DATA CHECK
 
