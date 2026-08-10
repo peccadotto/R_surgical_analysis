@@ -45,7 +45,7 @@ library(tidyverse)
 #| results: asis
 
 options(width = 150, tibble.width = Inf)
-dati_caricati <- readRDS("data/ver_2/export.rds")
+dati_caricati <- readRDS("data/export.rds")
 
 if (is.environment(dati_caricati)) {
   lista_df <- as.list(dati_caricati)

@@ -28,10 +28,10 @@
 
 # Importa dati
 
-  df_20122017 <- read.csv("data/ver_2/20122017.csv", sep = ";", header = TRUE)  
-  df_20172020 <- read.csv("data/ver_2/20172020.csv", sep = ";", header = TRUE)  
-  df_20212025 <- read.csv("data/ver_2/20212025.csv", sep = ";", header = TRUE)  
-  df_20262030 <- read.csv("data/ver_2/20262030.csv", sep = ";", header = TRUE)
+  df_20122017 <- read.csv("data/20122017.csv", sep = ";", header = TRUE)  
+  df_20172020 <- read.csv("data/20172020.csv", sep = ";", header = TRUE)  
+  df_20212025 <- read.csv("data/20212025.csv", sep = ";", header = TRUE)  
+  df_20262030 <- read.csv("data/20262030.csv", sep = ";", header = TRUE)
   
 # Unisci dati
   
@@ -150,7 +150,7 @@
       'Proc (%)' = Pct_proc) |>
     as_tibble() |> print()
   
-  icd9 <- read.csv("data/ver_2/icd9_procedures.csv", sep = ";", header = TRUE) |> mutate (Proc = as.character(Proc)) |> select(-Short)
+  icd9 <- read.csv("data/icd9_procedures.csv", sep = ";", header = TRUE) |> mutate (Proc = as.character(Proc)) |> select(-Short)
   df_pvt_proc <- df |>
     select(Proc) |>
     group_by(Proc) |>
@@ -179,12 +179,12 @@
     "4) PVT sede" = df_pvt_sede,
     "5) PVT top 15 procedures" = df_pvt_proc
   )
-  saveRDS(ls2save, file = "data/ver_2/export.rds")
-  write_xlsx(ls2save, path = "data/ver_2/export.xlsx")
+  saveRDS(ls2save, file = "data/export.rds")
+  write_xlsx(ls2save, path = "data/export.xlsx")
   ls2keep <- ls(pattern = "^df|^df_pvt")
   rm(list = setdiff(ls(), ls2keep))
   
 # Mostra report
   
-  quarto_render("report_ver_2.qmd")
-  utils::browseURL("report_ver_2.pdf")
+  quarto_render("report_version_2.qmd")
+  utils::browseURL("report_version_2.pdf")
