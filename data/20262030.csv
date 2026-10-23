@@ -1,27 +1,91 @@
 ﻿Data;Inizio;Fine;Paziente;Sesso;DOB;Nosologico;Proc;Descrizione;Ruolo;Sede
-13/01/2026;09:18;11:15;RUGGIERO LORENZO;M;12/12/2015;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;1;Policlinico
+13/01/2026;09:18;11:15;R******O L*****O;M;12/12/2015;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;1;Policlinico
 13/01/2026;;;;;;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;1;Policlinico
 13/01/2026;;;;;;;7825;7825 - Accorciamento del femore;1;Policlinico
 13/01/2026;;;;;;;7827;7827 - Accorciamento di tibia e fibula;1;Policlinico
 13/01/2026;;;;;;;9953;9953 - Vaccinazione profilattica contro encefaliti virali…;1;Policlinico
-13/01/2026;12:24;12:58;CAPPUCCI SIMONE;M;17/01/2013;;7825;7825 - Accorciamento del femore;1;Policlinico
-13/01/2026;13:43;13:52;DONDI GINEVRA;F;16/05/2010;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Policlinico
-20/01/2026;09:15;10:05;CUTOLO GIADA;F;09/09/2009;;7865;7865 - Rimozione di dispositivo impiantato dal femore;1;Policlinico
+13/01/2026;12:24;12:58;C******I S****E;M;17/01/2013;;7825;7825 - Accorciamento del femore;1;Policlinico
+13/01/2026;13:43;13:52;D***I G*****A;F;16/05/2010;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Policlinico
+20/01/2026;09:15;10:05;C****O G***A;F;09/09/2009;;7865;7865 - Rimozione di dispositivo impiantato dal femore;1;Policlinico
 20/01/2026;;;;;;;7865;7865 - Rimozione di dispositivo impiantato dal femore;1;Policlinico
-20/01/2026;;;DE MARCO FRANCESCA;F;30/05/2016;;7735;7735 - Altra sezione del femore;2;Policlinico
-22/01/2026;08:40;08:58;SAVARESE SIMONE;M;03/03/2012;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;2;Madonnina
-27/01/2026;09:18;09:33;MUSTAFA KARYM ADRY;M;12/05/2010;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Policlinico
-27/01/2026;10:50;11:04;MUSCAS FRANCESCO PIETRO;M;03/05/2011;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Policlinico
-03/02/2026;09:05;09:30;BARBIERI MATTEO;M;05/12/2010;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Policlinico
-03/02/2026;12:00;14:15;VASILE ASYA;F;14/09/2018;;7825;7825 - Accorciamento del femore;1;Policlinico
+20/01/2026;;;DE M***O F*******A;F;30/05/2016;;7735;7735 - Altra sezione del femore;2;Policlinico
+22/01/2026;08:40;08:58;S******E S****E;M;03/03/2012;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;2;Madonnina
+27/01/2026;09:18;09:33;M*****A K***M A**Y;M;12/05/2010;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Policlinico
+27/01/2026;10:50;11:04;M****S F*******O P****O;M;03/05/2011;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Policlinico
+03/02/2026;09:05;09:30;B******I M****O;M;05/12/2010;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Policlinico
+03/02/2026;12:00;14:15;V****E A**A;F;14/09/2018;;7825;7825 - Accorciamento del femore;1;Policlinico
 03/02/2026;;;;;;;7825;7825 - Accorciamento del femore;1;Policlinico
 03/02/2026;;;;;;;7827;7827 - Accorciamento di tibia e fibula;1;Policlinico
 03/02/2026;;;;;;;7827;7827 - Accorciamento di tibia e fibula;1;Policlinico
-10/02/2026;09:15;09:54;POCHIERO ALESSIO;M;16/07/2011;;7825;7825 - Accorciamento del femore;1;Policlinico
+10/02/2026;09:15;09:54;P******O A*****O;M;16/07/2011;;7825;7825 - Accorciamento del femore;1;Policlinico
 10/02/2026;;;;;;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Policlinico
-10/02/2026;11:50;12:06;IELPO SIMONE FELICE;M;25/05/2011;;7867;7867 - Rimozione di dispositivo impiantato da tibia e fib…;2;Policlinico
-17/02/2026;09:35;11:25;GARZETTI GAIA;F;13/02/2009;;8375;8375 - Trasposizione o trapianto di tendini;2;Policlinico
-24/02/2026;08:42;09:10;ROMANO TEMINA;F;09/03/2019;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;1;Policlinico
-24/02/2026;10:24;10:39;COSTANTINI ASIA;F;21/12/2006;;9929;9929 - Iniezione o infusione di altre sostanze terapeutic…;1;Policlinico
+10/02/2026;11:50;12:06;I***O S****E F****E;M;25/05/2011;;7867;7867 - Rimozione di dispositivo impiantato da tibia e fib…;2;Policlinico
+17/02/2026;09:35;11:25;G******I G**A;F;13/02/2009;;8375;8375 - Trasposizione o trapianto di tendini;2;Policlinico
+24/02/2026;08:42;09:10;R****O T****A;F;09/03/2019;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;1;Policlinico
+24/02/2026;10:24;10:39;C********I A**A;F;21/12/2006;;9929;9929 - Iniezione o infusione di altre sostanze terapeutic…;1;Policlinico
 24/02/2026;;;;;;;9929;9929 - Iniezione o infusione di altre sostanze terapeutic…;1;Policlinico
-24/02/2026;11:40;11:55;PINI CORRADO;M;01/04/2010;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Policlinico
+24/02/2026;11:40;11:55;P**I C*****O;M;01/04/2010;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Policlinico
+16/04/2026;08:40;09:12;G****A M*****A;F;19/04/2010;;7738;7738 - Altra sezione del tarso e metatarso;2;Madonnina
+16/04/2026;09:40;10:00;C******I P***O;M;23/08/2011;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;2;Madonnina
+16/04/2026;10:40;11:20;A******S M***A A****A;F;28/06/1942;;7738;7738 - Altra sezione del tarso e metatarso;2;Madonnina
+16/04/2026;12:05;13:30;A******I M***A S****A;F;15/04/2009;;7738;7738 - Altra sezione del tarso e metatarso;2;Madonnina
+16/04/2026;;;;;;;7728;7728 - Resezione cuneiforme del tarso e metatarso;2;Madonnina
+16/04/2026;;;;;;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;2;Madonnina
+14/05/2026;08:58;01:12;T********O B****A;F;20/05/2014;;7738;7738 - Altra sezione del tarso e metatarso;2;Madonnina
+14/05/2026;10:42;10:54;B*****I S***A;F;11/06/2012;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;2;Madonnina
+14/05/2026;11:45;12:15;S*****L M****O;M;28/11/2011;;7825;7825 - Accorciamento del femore;2;Madonnina
+14/05/2026;;;;;;;7825;7825 - Accorciamento del femore;2;Madonnina
+28/05/2026;08:50;09:05;P******O S***A;F;03/04/2014;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;2;Madonnina
+28/05/2026;09:38;10:02;B******E A***E;F;24/06/2012;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;2;Madonnina
+28/05/2026;13:05;13:49;C*****O D***A;F;14/01/1940;;7738;7738 - Altra sezione del tarso e metatarso;2;Madonnina
+04/06/2026;08:55;09:45;V*****I V******O;M;22/04/2010;;7865;7865 - Rimozione di dispositivo impiantato dal femore;2;Madonnina
+04/06/2026;;;;;;;7867;7867 - Rimozione di dispositivo impiantato da tibia e fib…;2;Madonnina
+04/06/2026;10:30;10:35;S*****I T****S M***O;M;21/09/2014;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;2;Madonnina
+25/06/2026;08:45;09:25;D*L S***O S**A;F;25/04/2016;;7827;7827 - Accorciamento di tibia e fibula;1;Madonnina
+25/06/2026;;;;;;;7827;7827 - Accorciamento di tibia e fibula;1;Madonnina
+25/06/2026;09:55;10:20;G********I P****O;M;25/05/2011;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;2;Madonnina
+25/06/2026;11:10;11:25;C******I B******E;F;25/08/2012;;7865;7865 - Rimozione di dispositivo impiantato dal femore;2;Madonnina
+25/06/2026;12:15;12:35;DI F***E A****A;F;19/10/2012;;7865;7865 - Rimozione di dispositivo impiantato dal femore;1;Madonnina
+02/07/2026;08:40;08:50;L*******I L******O;M;25/01/2013;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;2;Madonnina
+02/07/2026;09:55;10:45;A***' L*****D;M;03/03/2008;;7735;7735 - Altra sezione del femore;2;Madonnina
+16/07/2026;08:50;09:15;N*****J L****L;M;25/02/2013;;7865;7865 - Rimozione di dispositivo impiantato dal femore;2;Madonnina
+16/07/2026;;;;;;;7865;7865 - Rimozione di dispositivo impiantato dal femore;2;Madonnina
+31/08/2026;;;R***O F*******O;M;30/04/2019;;7827;7827 - Accorciamento di tibia e fibula;1;Parma
+31/08/2026;;;;;;;7867;7867 - Rimozione di dispositivo impiantato da tibia e fib…;1;Parma
+31/08/2026;;;;;;;7867;7867 - Rimozione di dispositivo impiantato da tibia e fib…;1;Parma
+31/08/2026;;;R******O L*****O;M;12/12/2015;;7865;7865 - Rimozione di dispositivo impiantato dal femore;1;Parma
+31/08/2026;;;;;;;7865;7865 - Rimozione di dispositivo impiantato dal femore;1;Parma
+17/09/2026;;;R***I M****A;M;;;7827;7827 - Accorciamento di tibia e fibula;2;Madonnina
+17/09/2026;;;;;;;7827;7827 - Accorciamento di tibia e fibula;2;Madonnina
+17/09/2026;;;M********O B****A;F;;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;2;Madonnina
+24/09/2026;;;B****A C***A;F;;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;2;Parma
+24/09/2026;;;;;;;9353;9353 - Applicazione di altro corsetto gessato;2;Parma
+24/09/2026;;;B**A K****I;M;;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;2;Parma
+24/09/2026;;;;;;;9353;9353 - Applicazione di altro corsetto gessato;2;Parma
+24/09/2026;;;F*******Z P***A B****A;;;;7825;7825 - Accorciamento del femore;2;Parma
+24/09/2026;;;;;;;7827;7827 - Accorciamento di tibia e fibula;2;Parma
+15/10/2026;;;M*****I L**A;F;;;7738;7738 - Altra sezione del tarso e metatarso;2;Madonnina
+15/10/2026;;;;;;;9353;9353 - Applicazione di altro corsetto gessato;2;Madonnina
+15/10/2026;;;DE N****I B******E;F;;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;2;Madonnina
+16/10/2026;;;P********O L****A G****A;F;;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;2;Parma
+16/10/2026;;;;;;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;2;Parma
+16/10/2026;;;S******O G****O;M;;;7728;7728 - Resezione cuneiforme del tarso e metatarso;2;Parma
+16/10/2026;;;;;;;7738;7738 - Altra sezione del tarso e metatarso;2;Parma
+16/10/2026;;;;;;;9353;9353 - Applicazione di altro corsetto gessato;2;Parma
+16/10/2026;;;P********I M****O;M;;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Parma
+16/10/2026;;;P********A N*****';M;;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;2;Parma
+16/10/2026;;;M******A K***M A**Y;M;;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Parma
+16/10/2026;;;L*****S T******A J**N E*****E;M;;;7825;7825 - Accorciamento del femore;2;Parma
+16/10/2026;;;;;;;7825;7825 - Accorciamento del femore;2;Parma
+16/10/2026;;;;;;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;2;Parma
+17/10/2026;;;V**A A********A;F;;;7728;7728 - Resezione cuneiforme del tarso e metatarso;2;Parma
+17/10/2026;;;;;;;7738;7738 - Altra sezione del tarso e metatarso;2;Parma
+17/10/2026;;;;;;;9353;9353 - Applicazione di altro corsetto gessato;2;Parma
+17/10/2026;;;O*****I N******';M;;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;2;Parma
+17/10/2026;;;P**I C*****O;M;;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;2;Parma
+17/10/2026;;;T******S O*E F*******O S*******N;M;;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;2;Parma
+17/10/2026;;;;;;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;2;Parma
+17/10/2026;;;G******O A***E C***L;F;;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Parma
+17/10/2026;;;DE B**O P***O;M;;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;2;Parma
+17/10/2026;;;;;;;7738;7738 - Altra sezione del tarso e metatarso;2;Parma
+17/10/2026;;;;;;;9353;9353 - Applicazione di altro corsetto gessato;2;Parma

@@ -151,6 +151,7 @@
     as_tibble() |> print()
   
   icd9 <- read.csv("data/icd9_procedures.csv", sep = ";", header = TRUE) |> mutate (Proc = as.character(Proc)) |> select(-Short)
+  
   df_pvt_proc <- df |>
     select(Proc) |>
     group_by(Proc) |>
@@ -175,7 +176,7 @@
     "0) Df completo" = df,
     "1) PVT anno" = df_pvt_anno,
     "2) PVT primo operatore" = df_pvt_lead,
-    "3) PVT fase (specializzando vs strutturato)" = df_pvt_fase,
+    "3) PVT fase (SSORT vs ORT)" = df_pvt_fase,
     "4) PVT sede" = df_pvt_sede,
     "5) PVT top 15 procedures" = df_pvt_proc
   )
