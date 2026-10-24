@@ -1,4 +1,4 @@
-﻿Data;Inizio;Fine;Paziente;Sesso;DOB;Nosologico;Proc;Descrizione;Ruolo;Sede
+﻿Date;Start;End;Patient;Gender;DOB;ID;Proc;Descr;Role;Place
 13/01/2026;09:18;11:15;R******O L*****O;M;12/12/2015;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;1;Policlinico
 13/01/2026;;;;;;;8385;8385 - Altri cambiamenti di lunghezza di muscoli e tendin…;1;Policlinico
 13/01/2026;;;;;;;7825;7825 - Accorciamento del femore;1;Policlinico

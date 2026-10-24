@@ -1,4 +1,4 @@
-﻿Data;Inizio;Fine;Paziente;Sesso;DOB;Nosologico;Proc;Descrizione;Ruolo;Sede
+﻿Date;Start;End;Patient;Gender;DOB;ID;Proc;Descr;Role;Place
 18/07/2017;08:14;08:25;M******O J****O;M;25/09/2002;;8118;8118 - Artroeresi dell’articolazione sottoastragalica;1;Humanitas
 18/07/2017;09:32;11:09;T******O A****A;M;15/01/2003;;7827;7827 - Accorciamento di tibia e fibula;1;Humanitas
 18/07/2017;;;;;;;7827;7827 - Accorciamento di tibia e fibula;1;Humanitas
