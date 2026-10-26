@@ -113,7 +113,7 @@ ggplot(
     title = paste0(
       "SURGERIES per YEAR (",
       min(df_rep_year$Year),
-      "-",
+      " - ",
       max(df_rep_year$Year),
       ")"
     )
@@ -164,7 +164,7 @@ ggplot(
     title = paste0(
       "PROCEDURES per YEAR (",
       min(df_rep_year$Year),
-      "-",
+      " - ",
       max(df_rep_year$Year),
       ")"
     )
@@ -246,7 +246,7 @@ ggplot(
     title = paste0(
       "SURGERIES as LEAD SURGEON (",
       min(df_rep_lead$Year),
-      "-",
+      " - ",
       max(df_rep_lead$Year),
       ")"
     )
@@ -298,7 +298,7 @@ ggplot(
     title = paste0(
       "PROCEDURES as LEAD SURGEON (",
       min(df_rep_lead$Year),
-      "-",
+      " - ",
       max(df_rep_lead$Year),
       ")"
     )
