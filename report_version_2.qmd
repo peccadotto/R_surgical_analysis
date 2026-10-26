@@ -60,7 +60,7 @@ if (length(df_list) == 0) {
 
   for (i in seq_along(df_list)) {
     df_name <- df_names[i]
-    df   <- df_list[[i]]
+    df <- df_list[[i]]
     
     if (df_name != "0) Complete") {
       if (df_name == "5) PVT top 15 PROCEDURES") {df <- df |> select(-Short)}
