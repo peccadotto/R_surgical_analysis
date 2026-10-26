@@ -343,7 +343,7 @@ Legend:
 
 - PFH = "Piccole Figlie Hospital", Parma
 
-- POLI = "Fondazione IRCCS Ca' Granda - Opsedale Maggiore Policlinico", Milano
+- POLI = "Fondazione IRCCS Ca' Granda - Ospedale Maggiore Policlinico", Milano
 
 ```{r}
 #| label: plot_surg_per_place
