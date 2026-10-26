@@ -16,10 +16,13 @@ The **Surgical Analysis Pipeline** is an automated workflow built in **R** and i
 - **Advanced Aggregations & Pivots:**
   - Yearly surgical and procedural volume tracking with cumulative counts and year-over-year percentage differences.
   - Lead surgeon role analysis (`Role == 1` vs. others) with percentage breakdowns.
-  - Professional practice location and career period partitioning.
+  - Professional practice location and career period partitioning across major clinical centers.
   - Top 15 procedure frequency analysis mapped against standard ICD-9 procedure codes.
 - **Multi-Format Exporting:** Saves processed datasets into an internal R structure (`export.rds`) and an Excel workbook (`export.xlsx`) for downstream reporting.
-- **Quarto PDF Rendering:** Compiles a custom-styled PDF report utilizing LaTeX packages (`fancyhdr`, `lastpage`) for professional headers, timestamps, and page numbering.
+- **Dynamic Quarto Reporting:** Compiles custom-styled HTML and PDF reports featuring:
+  - Professional custom ggplot themes and tailored color palettes.
+  - Striped data tables via `kableExtra` highlighting running totals and deltas.
+  - Visual breakdowns for yearly productivity, lead surgeon evolution, facility distribution, and top ICD-9 procedures.
 
 ------------------------------------------------------------------------
 
@@ -29,17 +32,18 @@ The **Surgical Analysis Pipeline** is an automated workflow built in **R** and i
 R_surgical_analysis/
 │
 ├── data/
-│   ├── 20122017.csv          # Raw surgical logs (2012–2017)
-│   ├── 20172020.csv          # Raw surgical logs (2017–2020)
-│   ├── 20212025.csv          # Raw surgical logs (2021–2025)
-│   ├── 20262030.csv          # Raw surgical logs (2026–2030)
-│   ├── icd9_procedures.csv   # ICD-9 procedure reference codes
-│   ├── export.rds            # Processed R data list (generated)
-│   └── export.xlsx           # Processed Excel workbook (generated)
+│   ├── 20122017.csv            # Raw surgical logs (2012–2017)
+│   ├── 20172020.csv            # Raw surgical logs (2017–2020)
+│   ├── 20212025.csv            # Raw surgical logs (2021–2025)
+│   ├── 20262030.csv            # Raw surgical logs (2026–2030)
+│   ├── icd9_procedures.csv     # ICD-9 procedure reference codes
+│   ├── export.rds              # Processed R data list (generated)
+│   └── export.xlsx             # Processed Excel workbook (generated)
 │
-├── version_2.R               # Main pipeline script
-├── report_version_2.qmd      # Quarto document template
-└── README.md                 # Project documentation
+├── version_2.R                 # Main pipeline script
+├── report_version_2.qmd        # Quarto document template (pdf)
+├── report_version_2_plot.qmd   # Quarto document template (html)
+└── README.md                   # Project documentation
 ```
 
 ------------------------------------------------------------------------
@@ -77,7 +81,7 @@ The R script automatically verifies and installs the following required CRAN pac
     source("verison_2.R")
     ```
 
-    This script will process the raw files, print summary tables to the console, save the processed outputs to `data/export.rds` and `data/export.xlsx`, and automatically trigger the Quarto render to output the final PDF report.
+    This script will process the raw files, print summary tables to the console, save the processed outputs to `data/export.rds` and `data/export.xlsx`, and automatically trigger the Quarto render to output the final HTML and PDF reports.
 
 ------------------------------------------------------------------------
 

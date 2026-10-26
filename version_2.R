@@ -91,7 +91,6 @@
     ) |>
     select(Year, Surgeries, S_cumul, S_diff, Procedures, P_cumul, P_diff) |>
     arrange(Year) |>
-    rename(' ' = Year) |>
     as_tibble() |> print()
   
   df_pvt_lead <- df |>
@@ -108,7 +107,6 @@
      ) |>
     adorn_totals(where = "row", name = "TOTAL", fill = "---") |>
     rename(
-      ' ' = Year,
       'S_Lead (n)' = S_lead,
       'S_Lead (%)' = S_lead_pct,
       'P_Lead (n)' = P_lead,
@@ -136,7 +134,6 @@
       select_cols = c("S_pct", "P_pct")
     ) |>
     rename(
-      ' ' = Period,
       'Surgeries (n)' = Surgeries,
       'Surgeries (%)' = S_pct,
       'Procedures (n)' = Procedures,
@@ -152,7 +149,7 @@
       Procedures = sum(!is.na(Proc) & Proc != ""),
       P_pct = sum(!is.na(Proc) & Proc != "")
     ) |>
-    arrange(desc(Place)) |>
+    arrange(desc(Surgeries)) |>
     adorn_totals(where = "row", name = "TOTAL") |>
     adorn_percentages(
       denominator = "col",
@@ -164,7 +161,6 @@
       select_cols = c("S_pct", "P_pct")
     ) |>
     rename(
-      ' ' = Place,
       'Surgeries (n)' = Surgeries,
       'Surgeries (%)' = S_pct,
       'Procedures (n)' = Procedures,
@@ -177,8 +173,7 @@
     sep = ";",
     header = TRUE
   ) |>
-  mutate (Proc = as.character(Proc)) |>
-  select(-Short)
+  mutate (Proc = as.character(Proc))
   
   df_pvt_proc <- df |>
     select(Proc) |>
@@ -192,7 +187,6 @@
     head(15) |>
     left_join(icd9, by = "Proc") |>
     rename(
-      ' ' = Proc,
       'n' = N,
       '%' = Pct,
       Description = Long
@@ -218,4 +212,6 @@
   
   Sys.setenv(QUARTO_PATH = "C:\\Program Files\\RStudio\\resources\\app\\bin\\quarto\\bin\\quarto.exe")
   quarto_render("report_version_2.qmd")
+  quarto_render("report_version_2_plot.qmd")
+  utils::browseURL("report_version_2_plot.html")
   utils::browseURL("report_version_2.pdf")

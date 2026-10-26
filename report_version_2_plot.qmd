@@ -1,0 +1,494 @@
+---
+title: "- PERSONAL SURGICAL ANALYSIS -"
+format: html
+editor: visual
+---
+
+```{=html}
+<style>
+
+h1, h2, h3, h4 {
+  font-weight: bold;
+  text-align: left;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 25px !important;
+}
+body {
+    font-family: "Calibri", sans-serif;
+    text-align: justify;
+    font-size: 11pt;
+  }
+</style>
+```
+
+```{r}
+#| label: setup
+#| include: false
+library(kableExtra)
+library(tidyverse)
+
+df_list <- readRDS("data/export.rds")
+
+# Create plot theme
+  my_plot_theme <- theme_minimal() +
+    theme(
+      plot.title = element_text(face = "bold", size = 18, hjust = 0.5, margin = margin(t = 10, b = 20)),
+      axis.title = element_text(face = "bold", size = 12),
+      axis.text  = element_text(face = "bold", size = 12),
+      axis.text.x = element_text(hjust = 0.5, face = "bold", size = 9),
+      axis.line  = element_line(color = "black", size = 0.5),
+      axis.ticks = element_line(color = "black")
+    )
+  
+```
+
+## 📈 SURGERIES and PROCEDURES per YEAR
+
+📌 The following charts illustrate the overall volume of surgeries and procedures **performed annually**, highlighting the yearly distribution and productivity trends across the analyzed timeframe.
+
+```{r}
+#| label: table_surg/proc_per_year
+#| echo: false
+
+df_rep_year <- df_list[[2]]
+
+df_rep_year |>
+  rename(
+    "Surgeries (running)" = S_cumul,
+    "Surgeries (delta)" = S_diff,
+    "Procedures (running)" = P_cumul,
+    "Procedures (delta)" = P_diff
+  ) |>
+  kbl(align="c")|>
+  kable_styling(
+    bootstrap_options = "striped", 
+    full_width = FALSE,      
+    position = "center"
+  ) |>
+  column_spec(2:7, width = "15%")
+```
+
+```{r}
+#| label: plot_surg_per_year
+#| echo: false
+#| fig.align: 'center'
+
+ggplot(
+  data = df_rep_year,
+  aes(x = Year)
+) +
+  geom_bar(
+    aes(y = Surgeries),
+    stat = "identity",
+    fill = "steelblue2",
+    color = "black",
+    alpha = 0.6
+  ) +
+  geom_text(
+    aes(
+      y = Surgeries,
+      label = Surgeries
+    ),
+    vjust = -0.5,
+    fontface = "bold",
+    size = 4
+  ) +
+  scale_x_continuous(
+    name ="",
+    breaks = seq(
+      min(df_rep_year$Year),
+      max(df_rep_year$Year),
+      by = 1
+    )
+  ) +
+  scale_y_continuous(
+    name = "",
+    limits = c(0, max(df_rep_year$Surgeries) * 1.1),
+    breaks = seq(0, max(df_rep_year$Surgeries) * 1.1, by = 50),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  labs(
+    title = paste0(
+      "SURGERIES per YEAR (",
+      min(df_rep_year$Year),
+      "-",
+      max(df_rep_year$Year),
+      ")"
+    )
+  ) +
+  my_plot_theme
+```
+
+```{r}
+#| label: plot_proc_per_year
+#| echo: false
+#| fig.align: 'center'
+
+ggplot(
+  data = df_rep_year,
+  aes(x = Year)
+) +
+  geom_bar(
+    aes(y = Procedures),
+    stat = "identity",
+    fill = "steelblue2",
+    color = "black",
+    alpha = 0.6
+  ) +
+  geom_text(
+    aes(
+      y = Procedures,
+      label = Procedures
+    ),
+    vjust = -0.5,
+    fontface = "bold",
+    size = 4
+  ) +
+  scale_x_continuous(
+    name ="",
+    breaks = seq(
+      min(df_rep_year$Year),
+      max(df_rep_year$Year),
+      by = 1
+    )
+  ) +
+  scale_y_continuous(
+    name = "",
+    limits = c(0, max(df_rep_year$Procedures) * 1.1),
+    breaks = seq(0, max(df_rep_year$Procedures) * 1.1, by = 100),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  labs(
+    title = paste0(
+      "PROCEDURES per YEAR (",
+      min(df_rep_year$Year),
+      "-",
+      max(df_rep_year$Year),
+      ")"
+    )
+  ) +
+  my_plot_theme
+```
+
+## 📈 SURGERIES and PROCEDURES as LEAD SURGEON
+
+📌 The following charts break down the proportion of surgeries and procedures performed **specifically as the lead surgeon each year**, reflecting the evolution of primary surgical responsibilities over time (excluding total summary metrics).
+
+```{r}
+#| label: table_surg/proc_lead_per_year
+#| echo: false
+
+df_rep_lead <- df_list[[3]]
+
+df_rep_lead |>
+  kbl(align="c")|>
+  kable_styling(
+    bootstrap_options = "striped", 
+    full_width = FALSE,      
+    position = "center"
+  ) |>
+  column_spec(2:7, width = "15%") |>
+  row_spec(nrow(df_rep_lead), bold = TRUE) |>
+  row_spec(nrow(df_rep_lead), italic = TRUE)
+
+df_rep_lead <- df_rep_lead |>
+  head(-1) |>
+  mutate(
+    Year = as.numeric(Year),
+    `S_Lead (%)` = as.integer(gsub("%", "", `S_Lead (%)`)),
+    `P_Lead (%)` = as.integer(gsub("%", "", `P_Lead (%)`))
+  )
+```
+
+```{r}
+#| label: plot_surg_lead_per_year
+#| echo: false
+#| fig.align: 'center'
+
+ggplot(
+  data = df_rep_lead,
+  aes(x = Year)
+) +
+  geom_bar(
+    aes(y = `S_Lead (%)`),
+    stat = "identity",
+    fill = "steelblue2",
+    color = "black",
+    alpha = 0.6
+  ) +
+  geom_text(
+    aes(
+      y = `S_Lead (%)`,
+      label = paste0(`S_Lead (%)`, "%")
+    ),
+    vjust = -0.5,
+    fontface = "bold",
+    size = 4
+  ) +
+  scale_x_continuous(
+    name = "",
+    breaks = seq(
+      min(df_rep_lead$Year),
+      max(df_rep_lead$Year),
+      by = 1
+    ),
+    expand = expansion(mult = c(0.05, 0.05))
+  ) +
+  scale_y_continuous(
+    name = "",
+    limits = c(0, max(df_rep_lead$`S_Lead (%)` * 1.1)),
+    breaks = seq(0, 100, by = 10),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  labs(
+    title = paste0(
+      "SURGERIES as LEAD SURGEON (",
+      min(df_rep_lead$Year),
+      "-",
+      max(df_rep_lead$Year),
+      ")"
+    )
+  ) +
+  my_plot_theme
+```
+
+```{r}
+#| label: plot_proc_lead_per_year
+#| echo: false
+#| fig.align: 'center'
+
+ggplot(
+  data = df_rep_lead,
+  aes(x = Year)
+) +
+  geom_bar(
+    aes(y = `P_Lead (%)`),
+    stat = "identity",
+    fill = "steelblue2",
+    color = "black",
+    alpha = 0.6
+  ) +
+  geom_text(
+    aes(
+      y = `P_Lead (%)`,
+      label = paste0(`P_Lead (%)`, "%")
+    ),
+    vjust = -0.5,
+    fontface = "bold",
+    size = 4
+  ) +
+  scale_x_continuous(
+    name = "",
+    breaks = seq(
+      min(df_rep_lead$Year),
+      max(df_rep_lead$Year),
+      by = 1
+    ),
+    expand = expansion(mult = c(0.05, 0.05))
+  ) +
+  scale_y_continuous(
+    name = "",
+    limits = c(0, max(df_rep_lead$`P_Lead (%)` * 1.1)),
+    breaks = seq(0, 100, by = 10),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  labs(
+    title = paste0(
+      "PROCEDURES as LEAD SURGEON (",
+      min(df_rep_lead$Year),
+      "-",
+      max(df_rep_lead$Year),
+      ")"
+    )
+  ) +
+  my_plot_theme
+```
+
+## 📈 PROCEDURES per PLACE
+
+📌 The following chart illustrates the distribution of surgeries and procedures performed **across different hospitals**, highlighting the comparative volume and activity levels per medical facility.
+
+```{r}
+#| label: table_surg/proc_per_place
+#| echo: false
+
+df_rep_place <- df_list[[5]]
+
+df_rep_place |>
+  kbl(align="lcccc")|>
+  kable_styling(
+    bootstrap_options = "striped", 
+    full_width = FALSE,      
+    position = "center"
+  ) |>
+  column_spec(1:5, width = "20%") |>
+  row_spec(nrow(df_rep_place), bold = TRUE) |>
+  row_spec(nrow(df_rep_place), italic = TRUE)
+
+df_rep_place <- df_rep_place |>
+  head(-1)
+```
+
+Legend:
+
+- CCLM = "La Madonnina" clinic, Milano
+
+- ICH = "Istituto Clinico Humanitas" - "Humanitas Ressearch Hospital", Rozzano (MI)
+
+- IOG = "Istituto Ortopedico Galeazzi", Milano
+
+- MLC = "Alessandro Manzoni" Hospital, Lecco
+
+- PFH = "Piccole Figlie Hospital", Parma
+
+- POLI = "Fondazione IRCCS Ca' Granda - Opsedale Maggiore Policlinico", Milano
+
+```{r}
+#| label: plot_surg_per_place
+#| echo: false
+#| fig.align: 'center'
+
+ggplot(
+  data = df_rep_place,
+  aes(x = reorder(Place, -`Surgeries (n)`))
+) +
+  geom_bar(
+    aes(y = `Surgeries (n)`),
+    stat = "identity",
+    fill = "steelblue2",
+    color = "black",
+    alpha = 0.6
+  ) +
+  geom_text(
+    aes(
+      y = `Surgeries (n)`,
+      label = `Surgeries (n)`
+    ),
+    vjust = -0.5,
+    fontface = "bold",
+    size = 4
+  ) +
+  scale_x_discrete(
+    name = ""
+  ) +
+  scale_y_continuous(
+    name = "",
+    limits = c(0, max(df_rep_place$`Surgeries (n)` + 250)),
+    breaks = seq(0, max(df_rep_place$`Surgeries (n)`) + 10, by = 250),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  labs(
+    title = "SURGERIES per PLACE"
+  ) +
+  my_plot_theme
+```
+
+```{r}
+#| label: plot_proc_per_place
+#| echo: false
+#| fig.align: 'center'
+
+ggplot(
+  data = df_rep_place,
+  aes(x = reorder(Place, -`Procedures (n)`))
+) +
+  geom_bar(
+    aes(y = `Procedures (n)`),
+    stat = "identity",
+    fill = "steelblue2",
+    color = "black",
+    alpha = 0.6
+  ) +
+  geom_text(
+    aes(
+      y = `Procedures (n)`,
+      label = `Procedures (n)`
+    ),
+    vjust = -0.5,
+    fontface = "bold",
+    size = 4
+  ) +
+  scale_x_discrete(
+    name = ""
+  ) +
+  scale_y_continuous(
+    name = "",
+    limits = c(0, max(df_rep_place$`Procedures (n)` + 250)),
+    breaks = seq(0, max(df_rep_place$`Procedures (n)`) + 10, by = 500),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  labs(
+    title = "PROCEDURES per PLACE"
+  ) +
+  my_plot_theme
+```
+
+## 📈 TOP 15 PROCEDURES
+
+📌 The following chart presents the **15 most frequently performed surgical procedures**, highlighting the primary clinical interventions and their relative distribution over the analyzed period.
+
+```{r}
+#| label: table_top_15_procedures
+#| echo: false
+
+df_rep_top15 <- df_list[[6]]
+
+df_rep_top15 |>
+  select(-Short) |>
+  kbl(align="cccl")|>
+  kable_styling(
+    bootstrap_options = "striped", 
+    full_width = FALSE,      
+    position = "center"
+  ) |>
+  column_spec(1:3, width = "10%")
+```
+
+```{r}
+#| label: plot_top_15_procedures
+#| echo: false
+#| fig.align: 'center'
+
+df_rep_top15 <- df_list[[6]]
+
+ggplot(
+  data = df_rep_top15,
+  aes(
+    x = reorder(Proc, -n),
+    y = n)
+) +
+  geom_col(
+    fill = "steelblue2",
+    color = "black",
+    alpha = 0.6
+  ) +
+  geom_text(
+    aes(label = n),
+    vjust = -0.5, 
+    fontface = "bold",
+    size = 4
+  ) +
+  scale_x_discrete(
+    name = ""
+  ) +
+  scale_y_continuous(
+    name="",
+    limits = c(0, max(df_rep_top15$n)*1.1),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  labs(
+    title = "TOP 15 ICD-9 PROCEDURES",
+    caption = "Short description of ICD-9 procedures taken from CMS.gov"
+  ) +
+  my_plot_theme
+```
+
+------------------------------------------------------------------------
+
+<p style="text-align: center; font-size: 10pt">
+
+Dr. Andrea Peccati - Published on `r Sys.Date()`
+
+</p>
