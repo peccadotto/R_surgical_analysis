@@ -1,6 +1,53 @@
 ---
 title: "- PERSONAL SURGICAL ANALYSIS -"
-format: html
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: true
+    # back-to-top-navigation: true
+    smooth-scroll: true
+    include-in-header:
+      text: |
+        <style>
+        #back-to-top-btn {
+          position: fixed;
+          bottom: 25px;
+          right: 25px;
+          display: none;
+          z-index: 99;
+          background-color: #0d6efd;
+          color: white;
+          border: none;
+          outline: none;
+          padding: 8px 14px;
+          border-radius: 50px;
+          font-size: 14px;
+          box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+          cursor: pointer;
+          transition: opacity 0.3s;
+        }
+        #back-to-top-btn:hover {
+          background-color: #0b5ed7;
+        }
+        </style>
+    include-after-body:
+      text: |
+        <button id="back-to-top-btn" title="Back to top">Back to top</button>
+        <script>
+        const btn = document.getElementById("back-to-top-btn");
+        window.onscroll = function() {
+          if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            btn.style.display = "block";
+          } else {
+            btn.style.display = "none";
+          }
+        };
+        btn.onclick = function() {
+          window.scrollTo({top: 0, behavior: 'smooth'});
+        };
+        </script>
 editor: visual
 ---
 
@@ -24,6 +71,12 @@ table {
   width: auto !important;
   margin-left: auto !important;
   margin-right: auto !important;
+}
+a {
+  text-decoration: none;
+}
+#TOC {
+  margin-bottom: 40px;
 }
 </style>
 ```
@@ -49,7 +102,7 @@ df_list <- readRDS("data/export.rds")
   
 ```
 
-## 📈 SURGERIES and PROCEDURES per YEAR
+## 📈 SURGERIES and PROCEDURES by YEAR
 
 📌 The following charts illustrate the overall volume of surgeries and procedures **performed annually**, highlighting the yearly distribution and productivity trends across the analyzed timeframe.
 
@@ -315,7 +368,7 @@ ggplot(
   my_plot_theme
 ```
 
-## 📈 PROCEDURES per PLACE
+## 📈 PROCEDURES by PLACE
 
 📌 The following chart illustrates the distribution of surgeries and procedures performed **across different hospitals**[^1], highlighting the comparative volume and activity levels per medical facility.
 
