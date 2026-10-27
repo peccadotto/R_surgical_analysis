@@ -16,10 +16,15 @@ h1 {
   margin-bottom: 25px !important;
 }
 body {
-    font-family: "Calibri", sans-serif;
-    text-align: justify;
-    font-size: 11pt;
+  font-family: "Calibri", sans-serif;
+  text-align: justify;
+  font-size: 11pt;
   }
+table {
+  width: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
 </style>
 ```
 
@@ -63,11 +68,10 @@ df_rep_year |>
   ) |>
   kbl(align="c")|>
   kable_styling(
-    bootstrap_options = "striped", 
-    full_width = FALSE,      
+    bootstrap_options = "striped",
+    full_width = FALSE,
     position = "center"
-  ) |>
-  column_spec(2:7, width = "15%")
+  )
 ```
 
 ```{r}
@@ -183,13 +187,18 @@ ggplot(
 df_rep_lead <- df_list[[3]]
 
 df_rep_lead |>
+  rename(
+    "Surgeries as lead (n)" = `S_Lead (n)`,
+      "Surgeries as lead (%)" = `S_Lead (%)`,
+      "Procedures as lead (n)" = `P_Lead (n)`,
+      "Procedures as lead (%)" = `P_Lead (%)`
+  ) |>
   kbl(align="c")|>
   kable_styling(
-    bootstrap_options = "striped", 
-    full_width = FALSE,      
+    bootstrap_options = "striped",
+    full_width = FALSE,
     position = "center"
   ) |>
-  column_spec(2:7, width = "15%") |>
   row_spec(nrow(df_rep_lead), bold = TRUE) |>
   row_spec(nrow(df_rep_lead), italic = TRUE)
 
@@ -308,7 +317,9 @@ ggplot(
 
 ## 📈 PROCEDURES per PLACE
 
-📌 The following chart illustrates the distribution of surgeries and procedures performed **across different hospitals**, highlighting the comparative volume and activity levels per medical facility.
+📌 The following chart illustrates the distribution of surgeries and procedures performed **across different hospitals**[^1], highlighting the comparative volume and activity levels per medical facility.
+
+[^1]: CCLM = "La Madonnina" clinic, Milano \| ICH = "Istituto Clinico Humanitas" - "Humanitas Ressearch Hospital", Rozzano (MI) \| IOG = "Istituto Ortopedico Galeazzi", Milano \| MLC = "Alessandro Manzoni" Hospital, Lecco \| PFH = "Piccole Figlie Hospital", Parma \| POLI = "Fondazione IRCCS Ca' Granda - Ospedale Maggiore Policlinico", Milano
 
 ```{r}
 #| label: table_surg/proc_per_place
@@ -317,33 +328,18 @@ ggplot(
 df_rep_place <- df_list[[5]]
 
 df_rep_place |>
-  kbl(align="lcccc")|>
+  kbl(align="c")|>
   kable_styling(
     bootstrap_options = "striped", 
     full_width = FALSE,      
     position = "center"
   ) |>
-  column_spec(1:5, width = "20%") |>
   row_spec(nrow(df_rep_place), bold = TRUE) |>
   row_spec(nrow(df_rep_place), italic = TRUE)
 
 df_rep_place <- df_rep_place |>
   head(-1)
 ```
-
-Legend:
-
-- CCLM = "La Madonnina" clinic, Milano
-
-- ICH = "Istituto Clinico Humanitas" - "Humanitas Ressearch Hospital", Rozzano (MI)
-
-- IOG = "Istituto Ortopedico Galeazzi", Milano
-
-- MLC = "Alessandro Manzoni" Hospital, Lecco
-
-- PFH = "Piccole Figlie Hospital", Parma
-
-- POLI = "Fondazione IRCCS Ca' Granda - Ospedale Maggiore Policlinico", Milano
 
 ```{r}
 #| label: plot_surg_per_place
@@ -436,14 +432,17 @@ ggplot(
 df_rep_top15 <- df_list[[6]]
 
 df_rep_top15 |>
+  rename(
+    "Procedure" = Proc,
+    "Short description" = Description
+  ) |>
   select(-Short) |>
   kbl(align="cccl")|>
   kable_styling(
     bootstrap_options = "striped", 
     full_width = FALSE,      
     position = "center"
-  ) |>
-  column_spec(1:3, width = "10%")
+  )
 ```
 
 ```{r}
@@ -484,11 +483,3 @@ ggplot(
   ) +
   my_plot_theme
 ```
-
-------------------------------------------------------------------------
-
-<p style="text-align: center; font-size: 10pt">
-
-Dr. Andrea Peccati - Published on `r Sys.Date()`
-
-</p>

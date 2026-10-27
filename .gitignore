@@ -7,6 +7,8 @@
 
 # --- Temporary output files ---
 *.log
+*.pdf
 *.utf8.md
 *.knit.md
 .positai
+report_version_2_plot_files/
