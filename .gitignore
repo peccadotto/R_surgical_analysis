@@ -12,3 +12,5 @@
 *.knit.md
 .positai
 report_version_2_plot_files/
+report_version_2.pdf
+report_version_2_plot.html
